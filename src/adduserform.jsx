@@ -1,21 +1,20 @@
-// src/components/AddUserForm.jsx
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useAddUserMutation } from "../services/userApi"; // RTK Mutation Hook
+import { useAddUserMutation } from "./userApi";
 import { useDispatch } from "react-redux";
-import { addUser } from "../features/userSlice"; // Add user to Redux state
+import { addUser } from "./userSlice";
 
 const AddUserForm = ({ onClose }) => {
   const { register, handleSubmit, reset } = useForm();
-  const [addUserAPI] = useAddUserMutation(); // Use the mutation to POST a new user
+  const [addUserAPI] = useAddUserMutation();
   const dispatch = useDispatch();
 
   const onSubmit = async (data) => {
     try {
-      const response = await addUserAPI(data).unwrap(); // Make POST request
-      dispatch(addUser(response)); // Update the Redux state with the new user
-      reset(); // Reset form after submission
-      onClose(); // Close the modal after user is added
+      const response = await addUserAPI(data).unwrap()
+      dispatch(addUser(response));
+      reset();
+      onClose();
     } catch (error) {
       console.error("Failed to add user:", error);
     }

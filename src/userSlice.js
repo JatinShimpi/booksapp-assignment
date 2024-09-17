@@ -1,23 +1,28 @@
-// src/features/userSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    users: [], // Store fetched users here
+    users: [],
   },
   reducers: {
     setUsers: (state, action) => {
-      state.users = action.payload; // Set users fetched from API
+      state.users = action.payload;
     },
     addUser: (state, action) => {
-      state.users.push(action.payload); // Add a new user
+      state.users.push(action.payload);
     },
     updateUser: (state, action) => {
-      const { id, updatedData } = action.payload;
-      const index = state.users.findIndex((user) => user.id === id);
-      if (index !== -1) {
-        state.users[index] = { ...state.users[index], ...updatedData };
+      const { id, first_name, last_name, email } = action.payload;
+      const userIndex = state.users.findIndex((user) => user.id === id);
+
+      if (userIndex !== -1) {
+        state.users[userIndex] = {
+          ...state.users[userIndex],
+          first_name,
+          last_name,
+          email,
+        };
       }
     },
     removeUser: (state, action) => {
@@ -26,8 +31,6 @@ const userSlice = createSlice({
   },
 });
 
-// Export actions for dispatching
 export const { setUsers, addUser, updateUser, removeUser } = userSlice.actions;
 
-// Export the reducer for the store
 export default userSlice.reducer;

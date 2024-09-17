@@ -1,7 +1,7 @@
-function Card({user}) {
+function Card({user,onCardClick}) {
     return (
-      <div>
-        <div key={user.id} className="card p-4 border">
+      
+        <div onClick={onCardClick} key={user.id} className="card p-4 border">
           <img
             src={user.avatar}
             alt={user.first_name}
@@ -12,7 +12,6 @@ function Card({user}) {
           </h3>
           <p>{user.email}</p>
         </div>
-      </div>
     );
 }
 

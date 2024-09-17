@@ -1,4 +1,3 @@
-// src/services/userApi.js
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const userApi = createApi({
@@ -18,5 +17,4 @@ export const userApi = createApi({
   }),
 });
 
-// Export the auto-generated hook for the `getUsers` query
 export const { useGetUsersQuery,useAddUserMutation } = userApi;
